@@ -20,6 +20,7 @@ git clone https://github.com/gantz26/Task9-Playwright-Pytest.git
 mkdir data
 python -m pip install --upgrade pip
 pip install pipenv
+pipenv shell
 pipenv install
 playwright install
 ```
