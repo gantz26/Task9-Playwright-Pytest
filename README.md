@@ -18,6 +18,7 @@ git clone https://github.com/gantz26/Task9-Playwright-Pytest.git
 2. Open this folder in PyCharm and install all dependencies and create data folder:
 ```
 mkdir data
+python -m pip install --upgrade pip
 pip install pipenv
 pipenv install
 playwright install
@@ -26,6 +27,7 @@ playwright install
 3. To run the tests use one of the next commands:
 ```
 pytest
+pytest --browser firefox
 ```
 
 4. To generate and view a report:
