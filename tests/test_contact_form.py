@@ -2,6 +2,7 @@ import allure
 import pytest
 from playwright.sync_api import expect
 from faker import Faker
+from utils.helper import take_screenshot
 
 @allure.feature("Contact Us Form")
 @pytest.mark.usefixtures("home_page", "contact_us_page")
@@ -14,6 +15,7 @@ class TestContactForm:
 
         with allure.step("Verify 'GET IN TOUCH' is visible"):
             expect(contact_us_page.get_in_touch_header()).to_be_visible()
+            take_screenshot(home_page.page, "Verify 'GET IN TOUCH' is visible")
 
         faker = Faker()
         name = faker.first_name()
@@ -28,11 +30,14 @@ class TestContactForm:
         with allure.step("Enter name, email, subject, message, upload file and Click 'Submit' button"):
             contact_us_page.fill_contact_us_form(name, email, subject,
                                              message, path_file)
+            take_screenshot(home_page.page, "Enter name, email, subject, message, upload file and Click 'Submit' button")
 
         with allure.step("Verify success message 'Success! Your details have been submitted successfully.' is visible"):
             expect(contact_us_page.get_success_message()).to_be_visible()
             expect(contact_us_page.get_success_message()).to_have_text("Success! Your details have been submitted successfully.")
+            take_screenshot(home_page.page, "Verify success message 'Success! Your details have been submitted successfully.' is visible")
 
         with allure.step("Click 'Home' button and verify that landed to home page successfully"):
             contact_us_page.click_home_button()
             assert home_page.get_title() == "Automation Exercise"
+            take_screenshot(home_page.page, "Click 'Home' button and verify that landed to home page successfully")

@@ -9,6 +9,7 @@ from pages.product_list_page import ProductListPage
 from pages.product_page import ProductPage
 from pages.cart_page import CartPage
 from pages.checkout_page import CheckoutPage
+from utils.helper import take_screenshot
 
 @pytest.fixture(scope="function", autouse=True)
 @allure.step("Before each test")
@@ -17,8 +18,10 @@ def before_each(page: Page):
 
     with allure.step("Navigate to site"):
         home_page.open()
+
     with allure.step("Verify that home page is visible successfully"):
         expect(page).to_have_title("Automation Exercise")
+        take_screenshot(page, "home page is visible")
 
 @pytest.fixture()
 def home_page(page: Page):
