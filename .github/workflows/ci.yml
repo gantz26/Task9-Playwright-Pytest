@@ -25,6 +25,7 @@ jobs:
           pip install exceptiongroup
           pipenv install --system
           playwright install chromium
+          mkdir data
 
       - name: Run tests
         run: pytest
